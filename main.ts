@@ -23,7 +23,7 @@ namespace Picogame {
 	
 	type EvtMsg = (data: number) => void;
 	let datamsg: EvtMsg = null;
-   function readmsg() { 
+   function readmsg(): void {
      let i2cbuf = pins.createBuffer(2);
         i2cbuf[0] = 255;
         i2cbuf[1] = 255;
