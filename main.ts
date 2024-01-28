@@ -23,6 +23,14 @@ namespace Picogame {
 	
 	type EvtMsg = (data: number) => void;
 	let datamsg: EvtMsg = null;
+   function readmsg() { 
+     let i2cbuf = pins.createBuffer(2)
+        i2cbuf[0] = 255
+        i2cbuf[1] = 255
+        pins.i2cWriteBuffer(PG_ADDR, i2cbuf)
+        let readbuf = pins.i2cReadBuffer(PG_ADDR, 1)
+        return readbuf[0]
+   }
 	
     //% block="On DATA received"
     //% draggableParameters
@@ -36,10 +44,11 @@ namespace Picogame {
     export function onI2CNumberReceived(rev_data: number, handler: () => void): void {
         // 在這裡可以執行其他任務，例如印出讀取到的數字
         // 注意：這裡的程式碼只是範例，請根據實際需求修改
-        basic.showNumber(rev_data);
+	let rev_data = readmsg() 
+        basic.showNumber(rev_data)
 
         // 執行其他任務
-        handler();
+        handler(rev_data);
     }
 
 	
