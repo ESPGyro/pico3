@@ -1,4 +1,4 @@
 {
-    "Picogame.Write|block": "寫值至 ID|%v 外部感測器",
-    "Picogame.Read|block": "讀取 I2C|%address 外部感測器"
+    "Picogame.sensor_write|block": "廣播數值|%v ",
+    "Picogame.sensor_read|block": "接收數值"
 }
