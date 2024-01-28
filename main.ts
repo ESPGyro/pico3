@@ -12,8 +12,9 @@ namespace Picogame {
         let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
 	let receivedData = readbuf[0];
         if (receivedData !== undefined) {
-           send_id = readbuf[0]
+           send_id = readbuf[0];
          } else {
+	   receivedData=0;
        }    
         return receivedData;
     }
