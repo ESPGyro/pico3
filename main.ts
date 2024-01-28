@@ -48,12 +48,7 @@ namespace Picogame {
     //% block
     //% draggableParameters
 export function onI2CNumberReceived(handler: (rev_data: number) => void): void {
-    readmsg((rev_data) => {
 
-
-        // 执行传入的 handler 函数，并传递 rev_data
-        handler(rev_data);
-    });
 }
 	
 }
