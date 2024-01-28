@@ -1,4 +1,5 @@
 const PG_ADDR = 0x66;
+let send_id = 255;
 //% color="#AA278D" icon="\uf2dc" weight=50
 namespace Picogame {
     //% block
@@ -6,13 +7,15 @@ namespace Picogame {
     //% address.min=1 address.max=5 address.defl=1
     export function i2cRead(address: number): number {
 	let i2cbuf = pins.createBuffer(2);
-	let send_id = 255;
         i2cbuf[0] = send_id;
-        i2cbuf[1] = 255;
         pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
         let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
-	    send_id = readbuf[0]; 
-        return readbuf[0];
+	let receivedData = readbuf[0];
+        if (receivedData !== undefined) {
+           send_id = readbuf[0]
+         } else {
+       }    
+        return receivedData;
     }
     //% blockId=sensor_write block="write value |%v"
     //% v.min=0 v.max=200
