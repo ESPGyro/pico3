@@ -21,13 +21,13 @@ namespace Picogame {
     }
 	
 	
-	type EvtMsg = (data: int) => void;
+	type EvtMsg = (data: number) => void;
 	let datamsg: EvtMsg = null;
 	
     //% block="On DATA received"
     //% draggableParameters
     //% weight=20
-    export function onDATAReceived(body: (receivedMessage: int) => void): void {
+    export function onDATAReceived(body: (receivedMessage: number) => void): void {
         datamsg = body;
     }
 }
