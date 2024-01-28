@@ -25,31 +25,18 @@ namespace Picogame {
 	let datamsg: EvtMsg = null;
 	
 function readmsg(callback: (data: number) => void): void {
-    let readData: number;
-
-    control.runInParallel(() => {
-        // 模擬 I2C 非同步讀取操作
+    // 模拟异步 I2C 读取操作
+    game.onUpdate(function () {
         let i2cbuf = pins.createBuffer(2);
-        i2cbuf[0] = 255;
-        i2cbuf[1] = 255;
+        i2cbuf[0] = 255;  // Adjust according to your device's protocol
+        i2cbuf[1] = 255;  // Adjust according to your device's protocol
         pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
-        
-        basic.pause(10); // 等待 I2C 寫入完成，實際需視硬體操作而定
-        
         let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
-        readData = readbuf[0];
+
+        let readData = readbuf[0];
+        callback(readData); // 调用回调函数，传递读取到的数据
     });
-
-    // 等待非同步操作完成
-    control.waitForEvent(
-        DAL.DEVICE_ID_NOTIFY_ONE,
-        DAL.MICROBIT_EVT_ANY
-    );
-
-    // 在這裡，非同步操作已完成，可以調用回調函數
-    callback(readData);
-}
-	
+}	
     //% block="On DATA received"
     //% draggableParameters
     //% weight=20
@@ -58,8 +45,11 @@ function readmsg(callback: (data: number) => void): void {
     }
     //% block
     //% draggableParameters
-export function onI2CNumberReceived(handler: (rev_data: number) => void): void {
+  export function onI2CNumberReceived(handler: (rev_data: number) => void): void {
+   let rev_data = readmsg();
 
+    // 執行傳入的 handler 函數，並傳遞 rev_data
+    handler(rev_data);
 }
 	
 }
