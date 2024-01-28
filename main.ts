@@ -24,24 +24,20 @@ namespace Picogame {
 	type EvtMsg = (data: number) => void;
 	let datamsg: EvtMsg = null;
 	
-  function readmsg(): number {
-    let i2cbuf = pins.createBuffer(2);
-    i2cbuf[0] = 255;
-    i2cbuf[1] = 255;
-    pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
+  function readmsg(callback: (data: number) => void): void {
+    // 模拟异步 I2C 读取操作
+    control.inBackground(() => {
+        let i2cbuf = pins.createBuffer(2);
+        i2cbuf[0] = 255;
+        i2cbuf[1] = 255;
+        pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
+        let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
 
-    let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
-
-    // 檢查讀取結果是否有效，如果無效可以進行錯誤處理
-    if (readbuf.length < 1) {
-        // 可以選擇拋出一個錯誤或執行其他處理方式
-        // 這裡示範拋出一個錯誤
-     //   control.raiseError("I2C read error");
-    }
-
-    // 返回讀取到的數字
-    return readbuf[0];
+        let readData = readbuf[0];
+        callback(readData); // 调用回调函数，传递读取到的数据
+    });
 }
+
 	
     //% block="On DATA received"
     //% draggableParameters
@@ -51,12 +47,13 @@ namespace Picogame {
     }
     //% block
     //% draggableParameters
-   export function onI2CNumberReceived(handler: (rev_data: number) => void): void {
-    // 從 I2C 讀取數據
-    let rev_data = readmsg();
+export function onI2CNumberReceived(handler: (rev_data: number) => void): void {
+    readmsg((rev_data) => {
 
-    // 執行傳入的 handler 函數，並傳遞 rev_data
-    handler(rev_data);
+
+        // 执行传入的 handler 函数，并传递 rev_data
+        handler(rev_data);
+    });
 }
 	
 }
