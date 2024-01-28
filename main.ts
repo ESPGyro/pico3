@@ -38,18 +38,5 @@ namespace Picogame {
     export function onDATAReceived(body: (receivedMessage: number) => void): void {
         datamsg = body;
     }
-    //% block
-    //% draggableParameters
-    //% blockId=onI2CNumberReceived block="onI2CNumberReceived |%rev_data"
-    //% rev_data.min=1 rev_data.max=255 
-    export function onI2CNumberReceived(rev_data: number, handler: () => void): void {
-        // 在這裡可以執行其他任務，例如印出讀取到的數字
-        // 注意：這裡的程式碼只是範例，請根據實際需求修改
-	let rev_data = readmsg() ;
 
-        // 執行其他任務
-        handler(rev_data);
-    }
-
-	
 }
