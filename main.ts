@@ -6,7 +6,7 @@ namespace Picogame {
     //% blockId=sensor_read block="read sensor |%address"
     //% address.min=1 address.max=5 address.defl=1
     export function i2cRead(address: number): number {
-	let i2cbuf = pins.createBuffer(2);
+	let i2cbuf = pins.createBuffer(1);
         i2cbuf[0] = send_id;
         pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
         let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
