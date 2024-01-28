@@ -1,7 +1,8 @@
 {
     "name": "Picogame",
     "version": "1.0.0",
-    "description": "",
+    "description": "PicoGame 專用積木",
+    "license": "MIT",
     "dependencies": {
         "core": "*"
     },
