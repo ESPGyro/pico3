@@ -39,6 +39,7 @@ namespace Picogame {
         datamsg = body;
     }
     //% block
+    //% draggableParameters
     //% blockId=onI2CNumberReceived block="onI2CNumberReceived |%rev_data"
     //% rev_data.min=1 rev_data.max=255 
     export function onI2CNumberReceived(rev_data: number, handler: () => void): void {
