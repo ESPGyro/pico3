@@ -55,9 +55,6 @@ namespace Picogame {
     // 從 I2C 讀取數據
     let rev_data = readmsg();
 
-    // 在這裡可以執行其他任務，例如印出讀取到的數字
-    basic.showNumber(rev_data);
-
     // 執行傳入的 handler 函數，並傳遞 rev_data
     handler(rev_data);
 }
