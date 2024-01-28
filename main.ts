@@ -23,14 +23,25 @@ namespace Picogame {
 	
 	type EvtMsg = (data: number) => void;
 	let datamsg: EvtMsg = null;
-   function readmsg(): void {
-     let i2cbuf = pins.createBuffer(2);
-        i2cbuf[0] = 255;
-        i2cbuf[1] = 255;
-        pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
-        let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
-        return readbuf[0];
-   }
+	
+  function readmsg(): number {
+    let i2cbuf = pins.createBuffer(2);
+    i2cbuf[0] = 255;
+    i2cbuf[1] = 255;
+    pins.i2cWriteBuffer(PG_ADDR, i2cbuf);
+
+    let readbuf = pins.i2cReadBuffer(PG_ADDR, 1);
+
+    // 檢查讀取結果是否有效，如果無效可以進行錯誤處理
+    if (readbuf.length < 1) {
+        // 可以選擇拋出一個錯誤或執行其他處理方式
+        // 這裡示範拋出一個錯誤
+     //   control.raiseError("I2C read error");
+    }
+
+    // 返回讀取到的數字
+    return readbuf[0];
+}
 	
     //% block="On DATA received"
     //% draggableParameters
