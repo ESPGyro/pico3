@@ -13,7 +13,7 @@ namespace Picogame {
 	if (receivedData !== undefined) {
             send_id = readbuf[0];
 	} else {
-	    receivedData =255; //0
+	    receivedData =0;
 	}
 		return receivedData;
     }
