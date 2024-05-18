@@ -3,7 +3,7 @@ let send_id = 255;
 //% color="#AA278D" icon="\uf2dc" weight=50
 namespace Picogame {
     //% block
-    //% blockId="sensor_read" block="Receive data"
+    //% blockId=sensor_read block="Receive data"
     export function i2cRead(): number {
 	let i2cbuf = pins.createBuffer(1);
           i2cbuf[0] = send_id; 
@@ -17,7 +17,7 @@ namespace Picogame {
 	}
 		return receivedData;
     }
-    //% blockId="sensor_write" block="Channel value |%a Broadcast value |%b"
+    //% blockId=sensor_write block="Channel value |%a Broadcast value |%b"
     //% a.min=0 a.max=30
     //% b.min=0 b.max=200
 	
