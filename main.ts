@@ -18,7 +18,7 @@ namespace Picogame {
     }
     //% blockId=i2cwrite block="Channel value %a |Broadcast value %b"
     //% a.min=0 a.max=30
-    //% b.min=0 b.max=200
+    //% b.min=1 b.max=200
 	
     export function i2cwrite(a: number, b: number): void {
 	let i2cbuf1 = pins.createBuffer(2);
