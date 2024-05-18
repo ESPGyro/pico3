@@ -1,5 +1,5 @@
 {
     "Picogame|block": "PicoGame廣播",
     "Picogame.i2cRead|block": "接收數值",
-    "Picogame.i2cwrite|block": "設定頻道 數值%a |廣播 數值%b"
+    "Picogame.i2cwrite|block": "設定頻道數值 %a |廣播數值 %b"
 }
