@@ -17,7 +17,7 @@ namespace Picogame {
 	}
 		return receivedData;
     }
-    //% blockId=i2cwrite block="Channel value |%a Broadcast value |%b"
+    //% blockId=i2cwrite block="Channel value %a |Broadcast value %b"
     //% a.min=0 a.max=30
     //% b.min=0 b.max=200
 	
