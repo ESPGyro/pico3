@@ -1,8 +1,7 @@
 const PG_ADDR = 0x66;
 let send_id = 255;
-//% color="#AA278D" icon="\uf2dc" weight=50
+//% color="#AA278D" icon="\uf2dc" weight=50 block="Picogame"
 namespace Picogame {
-    //% block
     //% blockId=i2cRead block="Receive data"
     export function i2cRead(): number {
 	let i2cbuf = pins.createBuffer(1);
